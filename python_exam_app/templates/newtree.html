@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Trees</title>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.3.1/dist/css/bootstrap.min.css"
+        integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+</head>
+
+<body style="padding: 30px;">
+    <ul class="navbar navbar-light bg-light justify-content-between list-unstyled">
+        <li class="nav-item">
+            <h2>Arbortraty</h2>
+            <p>A site track randomly planted tree</p>
+        </li>
+        <li>
+            <a href="/dashboard/user/account/">My Tree</a>
+        </li>
+        <div>
+            <li class="nav-item">
+                <p>Welcome <strong>{{user.firstname}}!</strong></p>
+            </li>
+            <li class="nav-item">
+                <a href="/dashboard">Dashboard</a> |
+                <a href="/logout" class="text-danger">Log Out</a>
+            </li>
+        </div>
+    </ul>
+    <hr>
+
+    <div style="display: flex;">
+        <div style="width: 30%;">
+            <h1>Arbitrarily Plant a Tree</h1>
+            <form method="post" action="/dashboard/add_plant/">
+                {% csrf_token %}
+                <div class="form-group">
+                    <label>Species:</label>
+                    <input type="text" name="species" class="form-control" aria-describedby="emailHelp"
+                        placeholder="Enter Species" required>
+                </div>
+                <div class="form-group">
+                    <label>Location:</label>
+                    <input type="text" name="location" class="form-control" aria-describedby="emailHelp"
+                        placeholder="Enter Location" required>
+                </div>
+                <div class="form-group">
+                    <label>Reason:</label>
+                    <input type="text" name="reason" class="form-control" aria-describedby="emailHelp"
+                        placeholder="Enter Reason" required>
+                </div>
+                <div class="form-group">
+                    <label>Date Planted:</label>
+                    <input type="date" name="date" class="form-control" required>
+                </div>
+                <button type="submit" class="btn btn-primary">Plant</button>
+            </form>
+        </div>
+
+        <div class="mt-4 text-danger ml-4 mt-4">
+            {% if messages %}
+            <ul class="messages">
+                {% for message in messages %}
+                <li {% if message.tags %} class="{{ message.tags }}" {% endif %}>{{ message }}</li>
+                {% endfor %}
+            </ul>
+            {% endif %}
+        </div>
+    </div>
+</body>
+
+</html>

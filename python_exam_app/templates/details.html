@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Trees</title>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.3.1/dist/css/bootstrap.min.css"
+        integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+</head>
+
+<body style="padding: 30px;">
+    <ul class="navbar navbar-light justify-content-between list-unstyled">
+        <li class="nav-item">
+            <h2>Arbortraty</h2>
+            <p>A site track randomly planted tree</p>
+        </li>
+        <li>
+            <a href="/dashboard/user/account/">My Tree</a>
+        </li>
+        <div>
+            <li class="nav-item">
+                <p>Welcome <strong>{{user.firstname}}!</strong></p>
+            </li>
+            <li class="nav-item">
+                <a href="/dashboard">Dashboard</a> |
+                <a href="/logout" class="text-danger">Log Out</a>
+            </li>
+        </div>
+    </ul>
+    <hr>
+    <h1>Tree Details</h1>
+    <div style="display: flex;">
+        <div class="border border-dark rounded p-3 mt-4" style="width: 40%;">
+            <h3>{{all_trees.species}} planted by {{all_trees.planted_by.firstname}} {{all_trees.planted_by.lastname}}</h3><br>
+            <h6 class="text-muted">Where: {{all_trees.location}}</h6>
+            <h6 class="text-muted">When: {{all_trees.date}}</h6>
+            <h6 class="text-muted">Reason: {{all_trees.reason}}</h6>
+        </div>
+        <div>
+            <h2 style="margin-left: 42%;">Visited By:</h2>
+        <div class="border border-dark rounded p-3" style="min-width: 300px; height: 130px; margin: 30px 0 0 200px;">
+            {% for visit in all_trees.users_who_viwe.all %}
+                <li class="navbar-item">
+                    {{visit.firstname}} {{visit.lastname}}
+                </li>
+            {% endfor %}
+        </div>
+    </div>
+        
+    </div>
+    <a href="/dashboard/visited_by/{{all_trees.id}}" style="margin-left: 54%;">Did you visit this tree?</a>
+</body>
+
+</html>

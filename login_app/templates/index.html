@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.3.1/dist/css/bootstrap.min.css"
+        integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+    <title>Trees</title>
+</head>
+
+<body>
+    <div style="display: flex; justify-content: space-around;">
+        <form style="width:30%; padding: 50px;" method="post" action="register/">
+            {% csrf_token %}
+            <h1>Registration</h1><br>
+            <div class="form-group">
+                <label for="fname">First Name</label>
+                <input type="text" class="form-control" placeholder="Enter First Name" name="fname" id="fname" required>
+            </div>
+            <div class="form-group">
+                <label for="lname">Last Name</label>
+                <input type="text" class="form-control" placeholder="Enter Last Name" name="lname" id="lname" required>
+            </div>
+            <div class="form-group">
+                <label for="email">Email address</label>
+                <input type="email" class="form-control" placeholder="Enter Email" name="email" id="email" required>
+            </div>
+            <div class="form-group">
+                <label for="password">Password</label>
+                <input type="password" class="form-control" placeholder="Enter Password" name="psw" id="psw" required>
+            </div>
+            <div class="form-group">
+                <label for="cnofirmPassword">Confirm Password</label>
+                <input type="password" class="form-control" placeholder="Confirm Password" name="psw-confirm"
+                    id="psw-confirm" required>
+            </div>
+            <button type="submit" class="btn btn-primary">Register</button>
+        </form>
+
+        <form style="width:30%; padding: 50px;" method="post" action="login/">
+            {% csrf_token %}
+            <h1>Log In</h1><br>
+            <div class="form-group">
+                <label for="exampleInputEmail1">Email address</label>
+                <input type="email" class="form-control" placeholder="Enter Email" name="email" id="email" required>
+            </div>
+            <div class="form-group">
+                <label for="exampleInputPassword1">Password</label>
+                <input type="password" class="form-control" placeholder="Enter Password" name="psw-login" id="psw"
+                    required>
+            </div>
+            <button type="submit" class="btn btn-primary">Log In</button>
+
+            <div class="mt-4 text-danger">
+                {% if messages %}
+                <ul class="messages">
+                    {% for message in messages %}
+                    <li {% if message.tags %} class="{{ message.tags }}" {% endif %}>{{ message }}</li>
+                    {% endfor %}
+                </ul>
+                {% endif %}
+            </div>
+
+        </form>
+    </div>
+
+</body>
+
+</html>

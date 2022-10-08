@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Trees</title>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.3.1/dist/css/bootstrap.min.css"
+        integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+</head>
+
+<body style="padding: 30px;">
+    <ul class="navbar navbar-light bg-light justify-content-between list-unstyled">
+        <li class="nav-item">
+            <h2>Arbortraty</h2>
+            <p>A site track randomly planted tree</p>
+        </li>
+        <li>
+            <a href="/dashboard/user/account/">My Tree</a>
+        </li>
+        <div>
+            <li class="nav-item">
+                <p>Welcome <strong>{{user.firstname}}!</strong></p>
+            </li>
+            <li class="nav-item">
+                <a href="/dashboard">Dashboard</a> |
+                <a href="/logout" class="text-danger">Log Out</a>
+            </li>
+        </div>
+    </ul>
+    <h1>Manage My Tree</h1><br>
+    <table class="table">
+        <thead>
+            <tr>
+                <th scope="col">Species</th>
+                <th scope="col">Planted By</th>
+                <th scope="col">Actions</th>
+            </tr>
+        </thead>
+        <tbody>
+            {% for tree in user.tree_planted.all%}
+            <tr>
+                <td>{{tree.species}}</td>
+                <td>{{tree.date}}</td>
+                <td>
+                    <a href="/dashboard/delete/{{tree.id}}/">delete</a> |
+                    <a href="/dashboard/edit/{{tree.id}}/">edit</a>
+                </td>
+            </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+</body>
+
+</html>
